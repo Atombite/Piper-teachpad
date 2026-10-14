@@ -1,0 +1,8 @@
+# Copyright © 2026-2026 atombite.ai
+# SPDX-License-Identifier: Apache-2.0
+
+# Replace both placeholder serials with the values reported by:
+# udevadm info --attribute-walk --path=/sys/class/net/can0
+# Stable names then remain correct when discovery order or USB ports change.
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="can*", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="606f", ATTRS{serial}=="REPLACE_WITH_LEFT_PIPER_CAN_ADAPTER_SERIAL", NAME="can_left"
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="can*", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="606f", ATTRS{serial}=="REPLACE_WITH_RIGHT_PIPER_CAN_ADAPTER_SERIAL", NAME="can_right"

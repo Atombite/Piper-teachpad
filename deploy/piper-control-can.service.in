@@ -1,0 +1,15 @@
+# Copyright © 2026-2026 atombite.ai
+# SPDX-License-Identifier: Apache-2.0
+
+[Unit]
+Description=Piper control SocketCAN setup
+Before=piper-control@left.service piper-control@right.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/opt/piper-control/venv/bin/python -m piper_control.can_cli --config /etc/piper-control/config.yaml up
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

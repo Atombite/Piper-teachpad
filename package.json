@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:teach": "node tools/build_teach_frontend.mjs",
+    "build:teach-tests": "node tools/build_teach_tests.mjs"
+  },
+  "dependencies": {
+    "three": "0.186.0",
+    "urdf-loader": "0.13.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

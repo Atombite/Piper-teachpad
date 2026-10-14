@@ -1,0 +1,22 @@
+# Copyright © 2026-2026 atombite.ai
+# SPDX-License-Identifier: Apache-2.0
+
+[Unit]
+Description=Piper three-camera ZeroMQ bridge
+After=network.target
+
+[Service]
+Type=notify
+NotifyAccess=main
+User=@SERVICE_USER@
+SupplementaryGroups=video
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/piper-control/venv/bin/python -m piper_control.camera_bridge.main --config /etc/piper-control/camera.yaml
+ExecStop=/bin/kill -TERM $MAINPID
+KillSignal=SIGTERM
+TimeoutStopSec=5s
+TimeoutStartSec=45s
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

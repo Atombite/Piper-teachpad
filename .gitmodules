@@ -1,0 +1,6 @@
+# Copyright © 2026-2026 atombite.ai
+# SPDX-License-Identifier: Apache-2.0
+
+[submodule "thirdparty/mujoco_menagerie"]
+	path = thirdparty/mujoco_menagerie
+	url = https://github.com/google-deepmind/mujoco_menagerie.git

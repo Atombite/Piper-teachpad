@@ -1,0 +1,21 @@
+# Copyright © 2026-2026 atombite.ai
+# SPDX-License-Identifier: Apache-2.0
+
+[Unit]
+Description=Piper remote-control Bridge (%i)
+Requires=piper-control@%i.service
+After=piper-control@%i.service network.target
+
+[Service]
+Type=simple
+User=@SERVICE_USER@
+RuntimeDirectory=piper-control-bridge-%i
+RuntimeDirectoryMode=0755
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/piper-control/venv/bin/python -m piper_control.bridge.main --config /etc/piper-control/piper-control-bridge.yaml --side %i
+ExecStop=/bin/kill -TERM $MAINPID
+KillSignal=SIGTERM
+TimeoutStopSec=10s
+
+[Install]
+WantedBy=multi-user.target

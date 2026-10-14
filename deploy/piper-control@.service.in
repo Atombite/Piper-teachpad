@@ -1,0 +1,22 @@
+# Copyright © 2026-2026 atombite.ai
+# SPDX-License-Identifier: Apache-2.0
+
+[Unit]
+Description=Piper robot control service (%i)
+Requires=piper-control-can.service
+After=piper-control-can.service network.target
+
+[Service]
+Type=simple
+User=@SERVICE_USER@
+RuntimeDirectory=piper-control-%i
+RuntimeDirectoryMode=0755
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/piper-control/venv/bin/python -m piper_control.main --config /etc/piper-control/config.yaml --side %i --lock-path /run/piper-control-%i/piper-control.lock
+ExecStop=/bin/kill -TERM $MAINPID
+KillSignal=SIGTERM
+TimeoutStopSec=infinity
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target

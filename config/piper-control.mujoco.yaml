@@ -1,0 +1,85 @@
+# Copyright © 2026-2026 atombite.ai
+# SPDX-License-Identifier: Apache-2.0
+
+arms:
+  left:
+    server:
+      host: 0.0.0.0
+      port: 8765
+    control_hz: 100
+    feedback_timeout_s: 0.5
+    homing_timeout_s: 10.0
+    shutdown_home_timeout_s: 30.0
+    name: left_arm
+    can_port: can1
+    auto_initialize: true
+    receive_latency_s: 0.0
+    calibration_joints_pos_deg: [0, 0, 0, 0, 0, 0]
+    reset_joints_pos_deg: [0, 0, 0, 0, 0, 0]
+    min_joints_deg: [-150, 0, -154, -100, -69, -120]
+    max_joints_deg: [150, 179, 0, 100, 69, 120]
+    max_joints_speed_deg_s: [30, 30, 30, 30, 30, 30]
+    default_joints_speed_deg_s: [20, 20, 20, 20, 20, 20]
+    gripper:
+      backend: piper
+      enabled: true
+      min_position_m: 0.0
+      max_position_m: 0.10
+      max_speed_m_s: 0.05
+      default_speed_m_s: 0.02
+      effort_nm: 1.0
+
+  right:
+    server:
+      host: 0.0.0.0
+      port: 9876
+    control_hz: 100
+    feedback_timeout_s: 0.5
+    homing_timeout_s: 10.0
+    shutdown_home_timeout_s: 30.0
+    name: right_arm
+    can_port: can0
+    auto_initialize: true
+    receive_latency_s: 0.0
+    calibration_joints_pos_deg: [0, 0, 0, 0, 0, 0]
+    reset_joints_pos_deg: [0, 0, 0, 0, 0, 0]
+    min_joints_deg: [-150, 0, -154, -100, -69, -120]
+    max_joints_deg: [150, 179, 0, 100, 69, 120]
+    max_joints_speed_deg_s: [30, 30, 30, 30, 30, 30]
+    default_joints_speed_deg_s: [20, 20, 20, 20, 20, 20]
+    gripper:
+      backend: piper
+      enabled: true
+      min_position_m: 0.0
+      max_position_m: 0.10
+      max_speed_m_s: 0.05
+      default_speed_m_s: 0.02
+      effort_nm: 1.0
+
+mujoco:
+  model_path: ../thirdparty/mujoco_menagerie/agilex_piper/piper.xml
+  timestep_s: 0.002
+  realtime: true
+  viewer: true
+  gripper_model_max_m: 0.07
+  cup:
+    enabled: true
+    position_m: [0.65, 0.65, 0.065]
+    mouth_diameter_m: 0.0878
+    height_m: 0.130
+    mass_kg: 0.35
+  open_box:
+    enabled: true
+    position_m: [0.38, 0.0, 0.10]
+    yaw_deg: 0.0
+    size_m: [0.20, 0.10, 0.20]
+    wall_thickness_m: 0.004
+    mass_kg: 0.30
+    friction: [1.0, 0.005, 0.0001]
+  bases:
+    left:
+      position_m: [0.0, 0.263, 0.0]
+      rpy_deg: [0.0, 0.0, 0.0]
+    right:
+      position_m: [0.0, -0.263, 0.0]
+      rpy_deg: [0.0, 0.0, 0.0]

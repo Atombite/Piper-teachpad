@@ -1,0 +1,74 @@
+# Copyright © 2026-2026 atombite.ai
+# SPDX-License-Identifier: Apache-2.0
+
+bind: tcp://0.0.0.0:15555
+queue_size: 2
+jpeg_quality: 90
+
+recovery:
+  frame_timeout_ms: 200
+  startup_timeout_ms: 10000
+  max_consecutive_frame_failures: 3
+  reconnect_timeout_ms: 1000
+  max_reconnect_attempts: 1
+
+cameras:
+  left_wrist:
+    driver: v4l2
+    # Discover the stable device path with: ls -l /dev/v4l/by-id/
+    device: /dev/v4l/by-id/REPLACE_WITH_LEFT_WRIST_CAMERA-video-index0
+    streams:
+      color:
+        width: 640
+        height: 480
+        fps: 30
+        capture_format: mjpeg
+        encoding: jpeg
+
+  right_wrist:
+    driver: realsense
+    # Discover RealSense serials with: rs-enumerate-devices
+    serial: "REPLACE_WITH_RIGHT_WRIST_REALSENSE_SERIAL"
+    streams:
+      color:
+        width: 640
+        height: 480
+        fps: 30
+        capture_format: bgr8
+        encoding: jpeg
+      depth:
+        width: 640
+        height: 480
+        fps: 30
+        capture_format: z16
+        encoding: raw
+
+  head:
+    driver: realsense
+    # Discover RealSense serials with: rs-enumerate-devices
+    serial: "REPLACE_WITH_HEAD_REALSENSE_SERIAL"
+    streams:
+      color:
+        width: 640
+        height: 480
+        fps: 30
+        capture_format: bgr8
+        encoding: jpeg
+      depth:
+        width: 640
+        height: 480
+        fps: 30
+        capture_format: z16
+        encoding: raw
+      infrared_1:
+        width: 640
+        height: 480
+        fps: 30
+        capture_format: y8
+        encoding: raw
+      infrared_2:
+        width: 640
+        height: 480
+        fps: 30
+        capture_format: y8
+        encoding: raw

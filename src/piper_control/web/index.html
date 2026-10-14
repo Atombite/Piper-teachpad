@@ -1,0 +1,119 @@
+<!-- Copyright © 2026-2026 atombite.ai
+     SPDX-License-Identifier: Apache-2.0 -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Piper Control Console</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Piper control service</p>
+        <h1>Safety console</h1>
+        <p id="base-info" class="muted">Loading service information…</p>
+      </div>
+      <div class="live-indicator"><span aria-hidden="true"></span>Live · 200 ms</div>
+      <a href="/teach">Open 3D teaching</a>
+    </header>
+
+    <main>
+      <p id="poll-error" class="error-banner" role="alert" aria-live="assertive" hidden></p>
+
+      <section class="summary-grid" aria-label="Service summary">
+        <article class="metric-card">
+          <span>Overall state</span>
+          <strong id="overall-state">—</strong>
+        </article>
+        <article class="metric-card">
+          <span>Control readiness</span>
+          <strong id="control-readiness">—</strong>
+          <small id="control-block-reason">Waiting for state…</small>
+        </article>
+        <article class="metric-card">
+          <span>Emergency stop</span>
+          <strong id="emergency-state">—</strong>
+        </article>
+        <article class="metric-card">
+          <span>WebSocket controller</span>
+          <strong id="ws-occupancy">—</strong>
+        </article>
+        <article class="metric-card">
+          <span>Control mode</span>
+          <strong id="control-mode">—</strong>
+        </article>
+        <article class="metric-card">
+          <span>Controller identity</span>
+          <strong id="ws-identity">—</strong>
+        </article>
+        <article class="metric-card fault-card">
+          <span>First fault</span>
+          <strong id="first-fault">None</strong>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Safety operations</p>
+            <h2>Manual controls</h2>
+          </div>
+          <p>Enter HOLD before selecting local or remote mode.</p>
+        </div>
+        <div class="controls">
+          <button class="danger" type="button" data-action="emergency-stop">Emergency stop</button>
+          <button type="button" data-action="recover">Recover stop</button>
+          <button type="button" data-action="homing">Start homing</button>
+          <button id="enter-hold" type="button" data-action="hold" disabled>Enter HOLD</button>
+          <button id="mode-local" type="button" data-action="mode-local" disabled>Use local mode</button>
+          <button id="mode-remote" type="button" data-action="mode-remote" disabled>Use remote mode</button>
+        </div>
+        <p id="action-status" class="action-status" aria-live="polite"></p>
+      </section>
+
+      <section class="arm-grid" aria-label="Arm health">
+        <article id="arm" class="panel arm-card">
+          <div class="section-heading"><h2 id="arm-label">Arm</h2><span data-field="presence">—</span></div>
+          <dl>
+            <div><dt>Connected</dt><dd data-field="connected">—</dd></div>
+            <div><dt>Enabled</dt><dd data-field="enabled">—</dd></div>
+            <div><dt>Feedback</dt><dd data-field="feedback">—</dd></div>
+            <div><dt>Fault code</dt><dd data-field="fault">—</dd></div>
+          </dl>
+        </article>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="section-heading"><div><p class="eyebrow">Joint telemetry</p><h2>Actual and target positions</h2></div><p>degrees</p></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Axis</th><th>Actual</th><th>Target</th></tr></thead>
+            <tbody id="actual-joints" data-target-body="target-joints"></tbody>
+          </table>
+          <span id="target-joints" class="sr-only">Target joint values are shown in the table.</span>
+        </div>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="section-heading"><div><p class="eyebrow">End effectors</p><h2>Grippers</h2></div><p>meters</p></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>End effector</th><th>Actual</th><th>Target</th></tr></thead>
+            <tbody id="grippers"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel timestamps">
+        <div><span>Feedback received</span><strong id="receive-timestamp">—</strong></div>
+        <div><span>Robot timestamp</span><strong id="robot-timestamp">—</strong></div>
+        <div><span>Dashboard updated</span><strong id="dashboard-timestamp">—</strong></div>
+      </section>
+    </main>
+    <footer class="company-footer">Copyright © 2026-2026 atombite.ai</footer>
+  </body>
+</html>

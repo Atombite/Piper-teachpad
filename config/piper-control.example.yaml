@@ -1,0 +1,57 @@
+# Copyright © 2026-2026 atombite.ai
+# SPDX-License-Identifier: Apache-2.0
+
+arms:
+  left:
+    server:
+      host: 0.0.0.0
+      port: 8765
+    control_hz: 100
+    feedback_timeout_s: 0.5
+    homing_timeout_s: 10.0
+    shutdown_home_timeout_s: 30.0
+    name: left_arm
+    can_port: can_left
+    auto_initialize: true
+    receive_latency_s: 0.0
+    calibration_joints_pos_deg: [0, 0, 0, 0, 0, 0]
+    reset_joints_pos_deg: [0, 0, 0, 0, 0, 0]
+    min_joints_deg: [-150, 0, -170, -100, -70, -120]
+    max_joints_deg: [150, 180, 0, 100, 70, 120]
+    max_joints_speed_deg_s: [30, 30, 30, 30, 30, 30]
+    default_joints_speed_deg_s: [20, 20, 20, 20, 20, 20]
+    gripper:
+      backend: piper
+      enabled: true
+      min_position_m: 0.0
+      max_position_m: 0.1
+      max_speed_m_s: 0.05
+      default_speed_m_s: 0.02
+      effort_nm: 1.0
+
+  right:
+    server:
+      host: 0.0.0.0
+      port: 9876
+    control_hz: 100
+    feedback_timeout_s: 0.5
+    homing_timeout_s: 10.0
+    shutdown_home_timeout_s: 30.0
+    name: right_arm
+    can_port: can_right
+    auto_initialize: true
+    receive_latency_s: 0.0
+    calibration_joints_pos_deg: [0, 0, 0, 0, 0, 0]
+    reset_joints_pos_deg: [0, 0, 0, 0, 0, 0]
+    min_joints_deg: [-150, 0, -170, -100, -70, -120]
+    max_joints_deg: [150, 180, 0, 100, 70, 120]
+    max_joints_speed_deg_s: [30, 30, 30, 30, 30, 30]
+    default_joints_speed_deg_s: [20, 20, 20, 20, 20, 20]
+    gripper:
+      backend: piper
+      enabled: true
+      min_position_m: 0.0
+      max_position_m: 0.1
+      max_speed_m_s: 0.05
+      default_speed_m_s: 0.02
+      effort_nm: 1.0

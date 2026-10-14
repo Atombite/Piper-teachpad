@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- Copyright © 2026-2026 atombite.ai
+     SPDX-License-Identifier: Apache-2.0 -->
+
+<robot name="missing-mesh">
+  <link name="base_link">
+    <visual><geometry><mesh filename="/fixture/link4.stl"/></geometry></visual>
+  </link>
+  <link name="tool0"/>
+  <joint name="tool0_fixed" type="fixed">
+    <parent link="base_link"/><child link="tool0"/>
+  </joint>
+</robot>

@@ -1,0 +1,36 @@
+# Copyright © 2026-2026 atombite.ai
+# SPDX-License-Identifier: Apache-2.0
+
+*.log
+*.zarr.zip
+*.zarr
+__pycache__
+tq_media
+*.h5
+*.png
+*.jpg
+*.duckdb
+*.csv
+*.duckdb.wal
+/*.html
+*.ckpt
+/wandb
+*.tar.gz
+*.tgz
+/tmp
+/logs
+/swanlog
+/checkpoints
+/wheels
+/flash_wheels
+/.vscode
+/venv
+/utils/gello_software
+# Exclude large media files
+*.mp4
+*.png
+*.pt
+log/replay_visualization/
+.idea/
+.claude/
+.worktrees/

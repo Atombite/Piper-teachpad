@@ -1,0 +1,107 @@
+<!-- Copyright © 2026-2026 atombite.ai
+     SPDX-License-Identifier: Apache-2.0 -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Piper 3D Teaching</title>
+    <link rel="stylesheet" href="/static/teach/teach.css">
+    <script src="/static/teach/teach.bundle.js" defer></script>
+  </head>
+  <body data-arm-side="__PIPER_ARM_SIDE__" data-server-port="__PIPER_SERVER_PORT__">
+    <header class="teach-header">
+      <div class="title-block">
+        <a href="/">← Safety Console</a>
+        <p class="eyebrow">Piper control service</p>
+        <h1>3D teaching</h1>
+      </div>
+      <dl class="header-status">
+        <div><dt>Arm</dt><dd id="arm-side">—</dd></div>
+        <div><dt>Connection</dt><dd id="connection-status">Loading</dd></div>
+      </dl>
+      <button class="danger emergency-stop" type="button" id="emergency-stop">Emergency stop</button>
+    </header>
+
+    <main class="teach-workspace">
+      <section id="teach-viewport" aria-label="Piper 3D viewport">
+        <div id="viewer-canvas"></div>
+        <div class="viewport-overlay">
+          <div class="legend" aria-label="Pose legend">
+            <span><i class="actual-swatch"></i>Actual</span>
+            <span><i class="target-swatch"></i>Target</span>
+          </div>
+          <div class="viewer-tools">
+            <button type="button" id="gizmo-translate" aria-pressed="true">Translate</button>
+            <button type="button" id="gizmo-rotate" aria-pressed="false">Rotate</button>
+            <button type="button" id="reset-camera">Reset camera</button>
+          </div>
+        </div>
+        <p id="viewer-loading">Loading robot model…</p>
+      </section>
+
+      <aside class="teach-controls" aria-label="Teaching controls">
+        <section class="control-card">
+          <div class="card-heading">
+            <div><p class="eyebrow">Tool center point</p><h2>Target pose</h2></div>
+            <output id="ik-badge" class="badge pending">Waiting</output>
+          </div>
+          <div class="tcp-grid" id="tcp-controls">
+            <label>X <span>mm</span><input type="number" step="1" data-tcp="x"></label>
+            <label>Y <span>mm</span><input type="number" step="1" data-tcp="y"></label>
+            <label>Z <span>mm</span><input type="number" step="1" data-tcp="z"></label>
+            <label>Roll <span>deg</span><input type="number" step="1" data-tcp="roll"></label>
+            <label>Pitch <span>deg</span><input type="number" step="1" data-tcp="pitch"></label>
+            <label>Yaw <span>deg</span><input type="number" step="1" data-tcp="yaw"></label>
+          </div>
+        </section>
+
+        <section class="control-card joints-card">
+          <div><p class="eyebrow">Joint targets</p><h2>J1–J6</h2></div>
+          <div id="joint-controls" class="joint-controls" aria-live="polite"></div>
+        </section>
+
+        <section class="control-card status-card" aria-live="polite">
+          <p class="eyebrow">Safety status</p>
+          <output id="motion-block-reason">Initializing teaching state…</output>
+          <output id="error-detail" hidden></output>
+        </section>
+
+        <section class="control-card gripper-card" id="gripper-controls">
+          <div class="card-heading">
+            <div><p class="eyebrow">End effector</p><h2>Gripper</h2></div>
+            <output id="gripper-actual">—</output>
+          </div>
+          <div class="gripper-row">
+            <label for="gripper-position">Opening <span id="gripper-position-unit">—</span></label>
+            <input id="gripper-position" type="range" disabled>
+            <input id="gripper-position-number" aria-label="Gripper opening millimetres" type="number" disabled>
+          </div>
+          <div class="gripper-row">
+            <label for="gripper-speed">Speed <span id="gripper-speed-unit">—</span></label>
+            <input id="gripper-speed" type="range" disabled>
+            <input id="gripper-speed-number" aria-label="Gripper speed millimetres per second" type="number" disabled>
+          </div>
+          <output id="gripper-status">Waiting for gripper feedback…</output>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="company-footer">Copyright © 2026-2026 atombite.ai</footer>
+
+    <footer class="command-bar" aria-label="Motion command bar">
+      <label for="teaching-mode">Mode</label>
+      <select id="teaching-mode">
+        <option value="preview">Preview</option>
+        <option value="reviewed">Reviewed execution</option>
+        <option value="live">Live follow</option>
+      </select>
+      <button type="button" id="acquire-control" disabled>Acquire control</button>
+      <button type="button" id="execute-target" disabled>Execute target</button>
+      <button type="button" id="reset-target" disabled>Reset target</button>
+      <button class="deadman" type="button" id="live-deadman" disabled>Hold to move</button>
+      <output id="command-status">Preview only. Edits do not move the arm.</output>
+    </footer>
+  </body>
+</html>
