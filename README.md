@@ -344,6 +344,10 @@ controllers in `local mode` and release Teach Pad or any other client so each ex
 has exclusive control. Never point these examples at Bridge ports `18765/19876`;
 clients that need priority arbitration must use the raw Bridge protocol above.
 
+Teleoperation demonstration:
+
+![Piper teleoperation demonstration](assets/teleoperation.gif)
+
 Install GELLO from its [upstream repository](https://github.com/wuphilipp/gello_software),
 align each leader within the default 5° tolerance, and start at the default low speed
 (低速) of 10°/s. Two motion gates are required:

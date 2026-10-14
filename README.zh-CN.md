@@ -313,6 +313,10 @@ PY
 拥有 exclusive control。绝不能把这些示例指向 Bridge 端口 `18765/19876`；需要优先级仲裁
 的客户端应使用上面的原始 Bridge 协议。
 
+遥操作演示：
+
+![Piper 遥操作演示](assets/teleoperation.gif)
+
 从[上游仓库](https://github.com/wuphilipp/gello_software)安装 GELLO。清空工作区，让 leader
 与对应 Piper 前六轴在默认 5° 内，从 10°/s 低速开始。运动需要两道确认：
 
