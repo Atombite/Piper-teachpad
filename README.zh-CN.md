@@ -166,6 +166,8 @@ systemctl status piper-control@left.service piper-control@right.service \
 访问 controller 的 `/` 打开 Safety Console。它显示状态、反馈和故障原因，急停始终可用，
 并提供明确的恢复、归零、local/remote 操作。不能靠重启绕过锁存故障。
 
+![Safety Console 截图](assets/safetyconsole.png)
+
 同端口 `/teach` 是 Teach Pad，离线渲染 Piper URDF，只控制该端口的机械臂：
 
 - **Preview** 只改目标，不获取控制权、不发送运动；
@@ -173,6 +175,8 @@ systemctl status piper-control@left.service piper-control@right.service \
 - **Live follow** 要求显式获取控制权并持续按住；松手、失焦、反馈过期、状态变化或网络
   故障都会断开并 HOLD；
 - 夹爪卡片共享同一排他控制权，使用 Piper 原生限位。
+
+![Teach Pad 截图](assets/teachpad.png)
 
 每个 controller 端口一次只允许一个控制客户端；冲突返回 `CLIENT_CONFLICT`，左右端口独立。
 

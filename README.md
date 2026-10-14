@@ -186,6 +186,8 @@ Open `/` on either controller for its Safety Console. It reports state, feedback
 fault reason, keeps E-stop available, and supports deliberate recovery, homing and
 local/remote changes. Never restart merely to bypass a latched fault.
 
+![Safety Console screenshot](assets/safetyconsole.png)
+
 Open `/teach` on the same port for the Teach Pad. It renders an offline Piper URDF
 and controls only that port's arm:
 
@@ -196,6 +198,8 @@ and controls only that port's arm:
   release, focus loss, stale feedback, state change, or network failure disconnects
   and causes HOLD.
 - The gripper card uses the same exclusive lease and native Piper limits.
+
+![Teach Pad screenshot](assets/teachpad.png)
 
 One controller port accepts one control client. A conflict closes with
 `CLIENT_CONFLICT`; the two arm ports remain independent.
